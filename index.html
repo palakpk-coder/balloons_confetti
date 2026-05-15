@@ -1,11 +1,12 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy Birthday!</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet"/>
+  <title>Birthday Cake</title>
 
   <style>
 
@@ -15,20 +16,14 @@
       box-sizing:border-box;
     }
 
-    :root{
-      --pink:#e8587a;
-      --purple:#9b5fcf;
-      --gold:#f0b429;
-      --cream:#fff8f2;
-      --dark:#2a1a2e;
-    }
-
     body{
       min-height:100vh;
-      background:var(--cream);
-      font-family:'Lato',sans-serif;
-      color:var(--dark);
-      overflow-x:hidden;
+      overflow:hidden;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:#fff8f2;
+      font-family:Arial,sans-serif;
       position:relative;
     }
 
@@ -56,9 +51,9 @@
 
     .balloon{
       position:absolute;
-      bottom:-160px;
+      bottom:-180px;
+      animation:rise linear infinite;
       opacity:.9;
-      animation:rise linear forwards;
     }
 
     .balloon svg{
@@ -66,6 +61,7 @@
     }
 
     @keyframes rise{
+
       0%{
         transform:translateY(0) rotate(0deg);
         opacity:0;
@@ -76,211 +72,63 @@
       }
 
       100%{
-        transform:translateY(-120vh) rotate(15deg);
+        transform:translateY(-130vh) rotate(15deg);
         opacity:0;
       }
+    }
+
+    /* cake section */
+
+    .container{
+      position:relative;
+      z-index:2;
+      text-align:center;
+    }
+
+    h1{
+      font-size:3rem;
+      margin-bottom:1rem;
+      background:linear-gradient(135deg,#e8587a,#9b5fcf);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .cake-wrap{
+      cursor:pointer;
+      transition:.3s;
+    }
+
+    .cake-wrap:hover{
+      transform:scale(1.05);
+    }
+
+    .hint{
+      margin-top:1rem;
+      color:#8b5e7c;
+      font-size:1rem;
     }
 
     /* confetti */
 
-    .confetti-piece{
+    .confetti{
       position:fixed;
+      width:10px;
+      height:14px;
       top:-20px;
+      opacity:.95;
       z-index:9999;
-      opacity:.9;
-      animation:confettiFall linear forwards;
+      animation:fall linear forwards;
     }
 
-    @keyframes confettiFall{
-      to{
-        transform:translateY(110vh) rotate(720deg);
-        opacity:0;
-      }
-    }
-
-    /* main */
-
-    main{
-      position:relative;
-      z-index:1;
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      padding:2rem;
-      text-align:center;
-    }
-
-    .eyebrow{
-      letter-spacing:4px;
-      color:#b09ac0;
-      margin-bottom:1rem;
-      opacity:0;
-      animation:fadeUp .8s .2s forwards;
-    }
-
-    h1{
-      font-family:'Playfair Display',serif;
-      font-size:clamp(2.6rem,7vw,5rem);
-      line-height:1.1;
-      background:linear-gradient(135deg,var(--pink),var(--purple));
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      opacity:0;
-      animation:fadeUp .8s .4s forwards;
-    }
-
-    .sub{
-      max-width:620px;
-      margin:1.2rem auto 2rem;
-      line-height:1.8;
-      color:#6a4d75;
-      opacity:0;
-      animation:fadeUp .8s .6s forwards;
-    }
-
-    @keyframes fadeUp{
-      from{
-        opacity:0;
-        transform:translateY(20px);
-      }
+    @keyframes fall{
 
       to{
-        opacity:1;
-        transform:translateY(0);
+        transform:
+        translateY(110vh)
+        rotate(720deg);
+
+        opacity:0;
       }
-    }
-
-    /* cake */
-
-    .cake-wrap{
-      margin:2rem 0;
-      cursor:pointer;
-      opacity:0;
-      animation:fadeUp .8s .8s forwards;
-    }
-
-    .cake-wrap:hover{
-      transform:scale(1.03);
-      transition:.3s;
-    }
-
-    .flame.out{
-      display:none;
-    }
-
-    /* emojis */
-
-    .emojis{
-      font-size:1.8rem;
-      letter-spacing:10px;
-      margin-top:1.5rem;
-      opacity:0;
-      animation:fadeUp .8s 1s forwards;
-    }
-
-    /* gifts */
-
-    #giftSection{
-      display:none;
-      opacity:0;
-      transition:opacity .6s ease;
-      max-width:500px;
-      width:100%;
-      margin-top:3rem;
-    }
-
-    .gift-title{
-      font-family:'Playfair Display',serif;
-      font-style:italic;
-      color:var(--purple);
-      margin-bottom:1.5rem;
-      font-size:1.1rem;
-    }
-
-    .gift-grid{
-      display:flex;
-      gap:1.2rem;
-      justify-content:center;
-      flex-wrap:wrap;
-    }
-
-    .gift-box{
-      background:#fff;
-      border:1.5px solid rgba(232,88,122,.25);
-      border-radius:18px;
-      padding:1.2rem 1rem;
-      width:130px;
-      cursor:pointer;
-      transition:.3s;
-      position:relative;
-      text-align:center;
-    }
-
-    .gift-box:hover{
-      transform:translateY(-6px);
-      box-shadow:0 10px 28px rgba(155,95,207,.2);
-    }
-
-    .gift-lid{
-      font-size:1.8rem;
-    }
-
-    .gift-body{
-      font-size:2.5rem;
-      margin:.2rem 0;
-    }
-
-    .gift-label{
-      font-size:.75rem;
-      letter-spacing:2px;
-      color:#b09ac0;
-      text-transform:uppercase;
-    }
-
-    .gift-message{
-      display:none;
-      position:fixed;
-      top:50%;
-      left:50%;
-      transform:translate(-50%,-50%);
-      background:#fff;
-      border:1.5px solid rgba(155,95,207,.3);
-      border-radius:20px;
-      padding:2rem;
-      width:90%;
-      max-width:360px;
-      box-shadow:0 16px 48px rgba(0,0,0,.15);
-      z-index:1001;
-      text-align:left;
-      line-height:1.8;
-      color:#5a3a6e;
-    }
-
-    .gift-message.open{
-      display:block;
-      animation:fadeUp .4s ease;
-    }
-
-    .gift-overlay{
-      display:none;
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.35);
-      z-index:1000;
-    }
-
-    .gift-overlay.open{
-      display:block;
-    }
-
-    footer{
-      text-align:center;
-      padding:1.5rem;
-      color:#b09ac0;
-      position:relative;
-      z-index:1;
     }
 
   </style>
@@ -292,28 +140,15 @@
 
   <div class="balloons" id="balloons"></div>
 
-  <main>
+  <!-- cake -->
 
-    <div class="eyebrow">
-      ✦ FOR MY CUTU BABY ✦
-    </div>
+  <div class="container">
 
-    <h1>
-      Happy Birthday, Srujan 🎂
-    </h1>
-
-    <p class="sub">
-      Today is all about you — your smile, your happiness,
-      your dreams and every tiny thing that makes you special.
-      I hope this year brings you endless happiness,
-      success and lots of love. 🤍
-    </p>
-
-    <!-- cake -->
+    <h1>Happy Birthday 🎂</h1>
 
     <div class="cake-wrap" id="cakeWrap">
 
-      <svg width="220" height="180" viewBox="0 0 200 170" fill="none">
+      <svg width="260" height="220" viewBox="0 0 200 170" fill="none">
 
         <!-- candles -->
 
@@ -323,23 +158,21 @@
 
         <!-- flames -->
 
-        <g>
-          <ellipse class="flame" cx="78.5" cy="41" rx="5" ry="7" fill="#fb923c"/>
-          <ellipse class="flame" cx="99.5" cy="37" rx="5" ry="7" fill="#fb923c"/>
-          <ellipse class="flame" cx="120.5" cy="41" rx="5" ry="7" fill="#fb923c"/>
-        </g>
+        <ellipse class="flame" cx="78.5" cy="41" rx="5" ry="7" fill="#fb923c"/>
+        <ellipse class="flame" cx="99.5" cy="37" rx="5" ry="7" fill="#fb923c"/>
+        <ellipse class="flame" cx="120.5" cy="41" rx="5" ry="7" fill="#fb923c"/>
 
-        <!-- top -->
+        <!-- top layer -->
 
         <rect x="65" y="62" width="70" height="26" rx="6" fill="#f9a8d4"/>
         <rect x="65" y="82" width="70" height="8" fill="#fbcfe8"/>
 
-        <!-- middle -->
+        <!-- middle layer -->
 
         <rect x="45" y="88" width="110" height="30" rx="6" fill="#c4b5fd"/>
         <rect x="45" y="110" width="110" height="10" fill="#ddd6fe"/>
 
-        <!-- base -->
+        <!-- base layer -->
 
         <rect x="25" y="118" width="150" height="38" rx="8" fill="#e8587a"/>
 
@@ -357,97 +190,19 @@
 
       </svg>
 
-      <p style="margin-top:.8rem;color:#8c6d98;">
-        Click the cake to blow candles ✨
-      </p>
-
     </div>
 
-    <div class="emojis">
-      🎈 🎁 🥳 🎂 🎉
-    </div>
+    <p class="hint">
+      Click the cake for endless confetti 🎉
+    </p>
 
-    <!-- gifts -->
-
-    <div id="giftSection">
-
-      <p class="gift-title">
-        Pick a gift, my cutu baby... 🎀
-      </p>
-
-      <div class="gift-grid">
-
-        <!-- box 1 -->
-
-        <div class="gift-box" onclick="openBox(this)">
-
-          <div class="gift-lid">🎀</div>
-          <div class="gift-body">🎁</div>
-          <div class="gift-label">Box 1</div>
-
-          <div class="gift-message">
-            Dear Srujan,<br><br>
-
-            My cute big baby I love You.
-            Thank you for always being there.
-            You are my happy place. 🌟
-          </div>
-
-        </div>
-
-        <!-- box 2 -->
-
-        <div class="gift-box" onclick="openBox(this)">
-
-          <div class="gift-lid">🎀</div>
-          <div class="gift-body">🎁</div>
-          <div class="gift-label">Box 2</div>
-
-          <div class="gift-message">
-            🎵 <strong>A song that reminds me of you:</strong><br><br>
-
-            <em>"Count on Me"</em> – Bruno Mars<br><br>
-
-            Because no matter what,
-            you can always count on me. 🤍
-          </div>
-
-        </div>
-
-        <!-- box 3 -->
-
-        <div class="gift-box" onclick="openBox(this)">
-
-          <div class="gift-lid">🎀</div>
-          <div class="gift-body">🎁</div>
-          <div class="gift-label">Box 3</div>
-
-          <div class="gift-message">
-            🔮 <strong>Your Birthday Prediction:</strong><br><br>
-
-            This year you will laugh harder,
-            love deeper,
-            travel somewhere beautiful
-            and achieve something huge. ✨
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </main>
-
-  <footer>
-    made with love ♥
-  </footer>
+  </div>
 
   <script>
 
-    // balloons
+    // balloon colors
 
-    const balloonColors = [
+    const colors = [
       '#e8587a',
       '#9b5fcf',
       '#f0b429',
@@ -456,80 +211,84 @@
       '#fca5a5'
     ];
 
-    const balloonWrap = document.getElementById('balloons');
+    // balloons
+
+    const balloonWrap =
+      document.getElementById('balloons');
 
     function createBalloon(i){
 
-      const div = document.createElement('div');
+      const balloon =
+        document.createElement('div');
 
-      div.className = 'balloon';
+      balloon.className = 'balloon';
 
-      div.style.left = Math.random() * 100 + 'vw';
+      balloon.style.left =
+        Math.random()*100 + 'vw';
 
-      div.style.animationDuration =
-        (12 + Math.random()*8) + 's';
+      balloon.style.animationDuration =
+        (10 + Math.random()*8) + 's';
 
-      div.style.animationDelay =
+      balloon.style.animationDelay =
         Math.random()*5 + 's';
 
-      const size = 40 + Math.random()*25;
+      const size =
+        40 + Math.random()*25;
 
       const color =
-        balloonColors[i % balloonColors.length];
+        colors[i % colors.length];
 
-      div.innerHTML = `
+      balloon.innerHTML = `
         <svg width="${size}" height="${size*1.3}" viewBox="0 0 60 80">
-          <ellipse cx="30" cy="30" rx="20" ry="26" fill="${color}" />
-          <line x1="30" y1="55" x2="30" y2="80"
-            stroke="#999" stroke-width="2"/>
+
+          <ellipse
+            cx="30"
+            cy="30"
+            rx="20"
+            ry="26"
+            fill="${color}"
+          />
+
+          <line
+            x1="30"
+            y1="55"
+            x2="30"
+            y2="80"
+            stroke="#999"
+            stroke-width="2"
+          />
+
         </svg>
       `;
 
-      balloonWrap.appendChild(div);
+      balloonWrap.appendChild(balloon);
     }
 
-    for(let i=0;i<10;i++){
+    for(let i=0;i<15;i++){
       createBalloon(i);
     }
 
-    // cake
+    // cake click confetti
 
-    let blown = false;
+    const cake =
+      document.getElementById('cakeWrap');
 
-    document.getElementById('cakeWrap')
-    .addEventListener('click',()=>{
-
-      if(blown) return;
-
-      blown = true;
-
-      document
-      .querySelectorAll('.flame')
-      .forEach(f=>f.classList.add('out'));
+    cake.addEventListener('click', ()=>{
 
       launchConfetti();
 
-      const gifts =
-        document.getElementById('giftSection');
-
-      gifts.style.display='block';
-
-      setTimeout(()=>{
-        gifts.style.opacity='1';
-      },100);
-
     });
 
-    // confetti
+    // confetti function
 
     function launchConfetti(){
 
-      for(let i=0;i<80;i++){
+      for(let i=0;i<120;i++){
 
         const conf =
           document.createElement('div');
 
-        conf.className='confetti-piece';
+        conf.className = 'confetti';
 
         conf.style.left =
           Math.random()*100 + 'vw';
@@ -541,12 +300,12 @@
           (8 + Math.random()*12) + 'px';
 
         conf.style.background =
-          balloonColors[
-            Math.floor(Math.random()*balloonColors.length)
+          colors[
+            Math.floor(Math.random()*colors.length)
           ];
 
         conf.style.animationDuration =
-          (3 + Math.random()*3) + 's';
+          (2 + Math.random()*3) + 's';
 
         conf.style.transform =
           `rotate(${Math.random()*360}deg)`;
@@ -555,42 +314,20 @@
 
         setTimeout(()=>{
           conf.remove();
-        },6000);
+        },5000);
+
       }
+
     }
 
-    // gifts
+    // automatic confetti every 4 seconds
 
-    const overlay = document.createElement('div');
-
-    overlay.className = 'gift-overlay';
-
-    document.body.appendChild(overlay);
-
-    overlay.addEventListener('click',closeBox);
-
-    function openBox(box){
-
-      closeBox();
-
-      const msg =
-        box.querySelector('.gift-message');
-
-      msg.classList.add('open');
-
-      overlay.classList.add('open');
-    }
-
-    function closeBox(){
-
-      document
-      .querySelectorAll('.gift-message')
-      .forEach(m=>m.classList.remove('open'));
-
-      overlay.classList.remove('open');
-    }
+    setInterval(()=>{
+      launchConfetti();
+    },4000);
 
   </script>
 
 </body>
 </html>
+
